@@ -32,7 +32,7 @@ def parser_hh_ru():
                 continue
             else:
                 ind += 1
-                price = i.find('span', class_='bloko-header-section-2').text
+                price = i.find('span', class_='bloko-header-section-2').text.replace(u"\u202F", " ")
                 name_company = i.find_all('div', class_='bloko-text')[0].text
                 city = i.find_all('div', class_='bloko-text')[1].text.split(',')[0]
 
@@ -45,7 +45,7 @@ def parser_hh_ru():
 
 def create_file():
     with open('vacancy_file.json', 'w', encoding='utf-8') as f:
-        json.dump(parser_hh_ru(), f, ensure_ascii=False, indent=4)
+        json.dump(parser_hh_ru(), f, ensure_ascii=False,  indent=4)
 
 
 if __name__ == "__main__":
